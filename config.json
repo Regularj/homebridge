@@ -1,0 +1,28 @@
+{
+    "bridge": {
+        "name": "Homebridge",
+        "username": "CC:22:3D:E3:CE:30",
+        "port": 51826,
+        "pin": "031-45-154"
+    },
+    
+    "platforms": [
+	{
+		"platform": "cmdSwitch2",
+		"name": " CMD switch",
+		"switches": [{
+			"name": "User isHome",
+			"on_cmd": "sudo rm -r /home/pi/.homebridge/homebridge-status/stephan_home; sudo mkdir /home/pi/.homebridge/homebridge-status/stephan_home",
+			"off_cmd": "sudo rm -r /home/pi/.homebridge/homebridge-status/stephan_home",
+			"state_cmd": "ls /home/pi/.homebridge/homebridge-status/stephan_home | grep -i 'stephan_home'",
+			"polling": "true"
+			}]
+    },
+	{	"platform": "HomeAssistant",
+    		"name": "HomeAssistant",
+    		"host": "http://127.0.0.1:8123",
+    		"supported_types": ["binary_sensor", "climate", "cover", "device_tracker", "fan", "group", "input_boolean", "light", "lock", "media_player", "scene", "sensor", "switch"],
+    		"logging": true
+  	}]
+
+}
